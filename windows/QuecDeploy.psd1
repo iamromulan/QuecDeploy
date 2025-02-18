@@ -1,18 +1,18 @@
 @{
-    Root = 'C:\Users\camer\Documents\GitHub\RM520N-GL\source\QuecDeploy.ps1'
-    OutputPath = 'C:\Users\camer\Documents\GitHub\RM520N-GL\'
+    Root = 'D:\Users\camer\Documents\GitHub\QuecDeploy\windows\QuecDeploy.ps1'
+    OutputPath = 'D:\Users\camer\Documents\GitHub\QuecDeploy\windows\'
     Package = @{
         Enabled = $true
         Host = 'IronmanPowerShellHost'
         PowerShellVersion = "Windows PowerShell"
         Obfuscate = $true
-        FileVersion = '1.0.3'
+        FileVersion = '1.0.4'
         FileDescription = 'Quickly deploy Quectel Tools/Firmware'
-        ProductName = 'QuecDeploy_x64_1.0.3'
+        ProductName = 'QuecDeploy_x64_1.0.4'
         ProductVersion = '1.0.3'
         Copyright = 'Cameron S Thompson'
         RequireElevation = $true
-        ApplicationIconPath = 'C:\Users\camer\Documents\GitHub\RM520N-GL\source\FenixStar.ico'
+        ApplicationIconPath = 'D:\Users\camer\Documents\GitHub\QuecDeploy\windows\FenixStar.ico'
         PackageType = 'Console'
         Platform = 'x64'
     }
