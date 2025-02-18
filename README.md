@@ -7,6 +7,10 @@ To download visit the [Releases Section](https://github.com/iamromulan/QuecDeplo
 ## Issues Downloading?
 
 Visit the [Known Issues Readme](./ISSUES.md)
+
+## Prefer to browse the files I have?
+Take a look at my [MEGA Public Directory.](https://mega.nz/folder/CRFWlIpQ#grOByBgkfZe5uLMkX2M2XA)That's where QuecDeploy gets everything from.
+
 ## Features: 
 - Megatools.exe integrated for downloads from mega.nz
 - Download and install the following drivers easily:
