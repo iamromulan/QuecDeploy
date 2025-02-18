@@ -170,8 +170,13 @@
   },
   "active": "c3557cc0e6f4d533",
   "lastOpenFiles": [
-    "CHANGELOG.md",
+    "ISSUES.md",
     "README.md",
+    "CHANGELOG.md",
+    "images/allow_wind_def.png",
+    "images/allow_wind_def.png.~tmp",
+    "images/allow_wind_def_hist.png",
+    "megatools.md",
     "images/quecdeploy_main_menu.png",
     "images",
     "New folder"

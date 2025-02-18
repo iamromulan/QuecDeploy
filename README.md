@@ -1,7 +1,12 @@
 # QuecDeploy: Quickly Install/Deploy Quectel Software/Firmware
 ![Screenshot 2024-07-31 130755](./images/quecdeploy_main_menu.png)
 
+## Download
 
+To download visit the [Releases Section](https://github.com/iamromulan/QuecDeploy/releases) scroll down to assets and download the exe
+## Issues Downloading?
+
+Visit the [Known Issues Readme](./ISSUES.md)
 ## Features: 
 - Megatools.exe integrated for downloads from mega.nz
 - Download and install the following drivers easily:
@@ -11,7 +16,7 @@
           - Note: NDIS Driver must also be installed to access ports
      - MBIM Driver 1.3 (For AT+QCFG="usbnet",2 mode)
      - RNDIS Driver 1.1 (For AT+QCFG="usbnet",3 mode)
-    :warning: Only have one of these drivers installed at once. The ECM driver is the exception to this rule.
+    > :warning: Only have one of these drivers installed at once. The ECM driver is the exception to this rule.
 
 - Download and install Qflash 7.3 to C:\Quectel\Qflash\
     - adb and fastboot are included with Qflash 7.3 and automatically added to the system path
