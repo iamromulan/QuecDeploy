@@ -7,8 +7,11 @@ Windows Defender thinks this is a virus. ==**It is not a virus.**== Its a false 
 
 To fix the issue:
 After the download fails, Open Windows Defender:
+
 ![](./images/allow_wind_def.png)
+
 Anything that says allow click it. If you don't see this then go into protection history and allow it from there:
+
 ![](./images/allow_wind_def_hist.png)
 
-==**Once Done, try your download again.**==
+**Once Done, try your download again.**
