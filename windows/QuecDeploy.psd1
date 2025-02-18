@@ -9,7 +9,7 @@
         FileVersion = '1.0.4'
         FileDescription = 'Quickly deploy Quectel Tools/Firmware'
         ProductName = 'QuecDeploy_x64_1.0.4'
-        ProductVersion = '1.0.3'
+        ProductVersion = '1.0.4'
         Copyright = 'Cameron S Thompson'
         RequireElevation = $true
         ApplicationIconPath = 'D:\Users\camer\Documents\GitHub\QuecDeploy\windows\FenixStar.ico'
