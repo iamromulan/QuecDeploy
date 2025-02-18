@@ -232,7 +232,7 @@ Write-Host "                                           :+##+.           "
     Write-Host "Please select an option:"
 	Write-Host "=============================================================" -ForegroundColor Green
     Write-RandomColorText "1) Install/Uninstall Drivers"
-    Write-RandomColorText "2) Install/Uninstall Qflash 7.1"
+    Write-RandomColorText "2) Install/Uninstall Qflash 7.3"
     Write-RandomColorText "3) Install/Uninstall Qnavigator 1.6.10"
     Write-RandomColorText "4) Firmware downloads"
     Write-RandomColorText "5) View AT Command Docs and other resources"
@@ -260,7 +260,7 @@ Function Main-Menu {
     Write-Host "Please select an option:"
 	Write-Host "=============================================================" -ForegroundColor Green
     Write-RandomColorText "1) Install/Uninstall Drivers"
-    Write-RandomColorText "2) Install/Uninstall Qflash 7.1"
+    Write-RandomColorText "2) Install/Uninstall Qflash 7.3"
     Write-RandomColorText "3) Install/Uninstall Qnavigator 1.6.10"
     Write-RandomColorText "4) Firmware downloads"
     Write-RandomColorText "5) View AT Command Docs and other resources"
@@ -379,7 +379,7 @@ Function Install-QflashVersion {
             }
         }
     }
-    Write-Log "Installing Qflash 7.1..."
+    Write-Log "Installing Qflash 7.3..."
     New-Item -Path $installDir -ItemType Directory -Force
     Download-With-Megatools -url $url -output $installDir
     Extract-Zip -zipPath (Join-Path -Path $installDir -ChildPath $zipName) -extractPath $installDir
@@ -583,29 +583,31 @@ Function Stock-Firmware-RM520NGL-Menu {
     Write-Host "These options will download and extract a firmware zip with an update folder for use with Qflash"
     Write-Host "The .zips will extract to C:\Quectel\firmware\RM520NGL\Stock\<name_of_zip_without_extension>\" -ForegroundColor Green
 	Write-Host "=============================================================" -ForegroundColor Green
-    Write-RandomColorText "1) RM520NGLAAR01A08M4G (2024-10-09)"
-    Write-RandomColorText "2) RM520NGLAAR01A08M4G (2024-06-20)"
-    Write-RandomColorText "3) RM520NGLAAR01A08M4G (2024-04-03)"
-    Write-RandomColorText "4) RM520NGLAAR01A08M4G (2024-02-01)"
-    Write-RandomColorText "5) RM520NGLAAR01A08M4G (2023-07-20)"
-    Write-RandomColorText "6) RM520NGLAAR01A07M4G (2023-07-12)"
-    Write-RandomColorText "7) RM520NGLAAR01A07M4G (2023-03-27)"
-    Write-RandomColorText "8) RM520NGLAAR01A06M4G (2023-01-20)"
-    Write-RandomColorText "9) RM520NGLAAR01A06M4G (2022-12-26)"
-    Write-RandomColorText "10) Go back to RM520N-GL Firmware options"
+	Write-RandomColorText "1) RM520NGLAAR01A08M4G (2025-01-08)"
+    Write-RandomColorText "2) RM520NGLAAR01A08M4G (2024-10-09)"
+    Write-RandomColorText "3) RM520NGLAAR01A08M4G (2024-06-20)"
+    Write-RandomColorText "4) RM520NGLAAR01A08M4G (2024-04-03)"
+    Write-RandomColorText "5) RM520NGLAAR01A08M4G (2024-02-01)"
+    Write-RandomColorText "6) RM520NGLAAR01A08M4G (2023-07-20)"
+    Write-RandomColorText "7) RM520NGLAAR01A07M4G (2023-07-12)"
+    Write-RandomColorText "8) RM520NGLAAR01A07M4G (2023-03-27)"
+    Write-RandomColorText "9) RM520NGLAAR01A06M4G (2023-01-20)"
+    Write-RandomColorText "10) RM520NGLAAR01A06M4G (2022-12-26)"
+    Write-RandomColorText "11) Go back to RM520N-GL Firmware options"
 	Write-Host "=============================================================" -ForegroundColor Green
     $firmwareChoice = Read-Host "Select a stock firmware"
     Switch ($firmwareChoice) {
-	"1" { Download-Firmware "https://mega.nz/file/PMNkCLzR#MoLgG9mROATtL5LpYgFiroAudZMOOWCOAumYlPi1NFA" "RM520NGLAAR01A08M4G_2024_10_09.zip" "Stock" }
-	"2" { Download-Firmware "https://mega.nz/file/eBVFhDhZ#1or8iMpmJiIKtZAPjo3rBTL2rit-pMFyZN10VSUzbgg" "RM520NGLAAR01A08M4G_2024_06_20.zip" "Stock" }
-        "3" { Download-Firmware "https://mega.nz/file/ucclVCLT#chq0HzixUTPoNpG9G2duv5Xhj2JChz2ALa6QJpZJ3kY" "RM520NGLAAR01A08M4G_2024_04_03.zip" "Stock" }
-        "4" { Download-Firmware "https://mega.nz/file/2NdzWKJJ#n4EbQkh17Pwfkfxzz-ZbjN5MFK6fJVRgLx6Chh43QRk" "RM520NGLAAR01A08M4G_2024_02_01.zip" "Stock" }
-        "5" { Download-Firmware "https://mega.nz/file/SYMh0YwI#xLaLs8qeOMOmic1wHLROrZedZ3USmNzGrSkFddOiAzk" "RM520NGLAAR01A08M4G_2023_07_20.zip" "Stock" }
-        "6" { Download-Firmware "https://mega.nz/file/zR011SQT#lPdFog6G_5RFdKCltnpGKrblvEFOiW-Ctumz72LNMns" "RM520NGLAAR01A07M4G_2023_07_12.zip" "Stock" }
-        "7" { Download-Firmware "https://mega.nz/file/bFdVlJAB#-vDBJ4ywc4aM68ECG2Sef2i-5VuCHk-is05Y5HRyUJM" "RM520NGLAAR01A07M4G_2023_03_27.zip" "Stock" }
-        "8" { Download-Firmware "https://mega.nz/file/TJ8m1QoB#V7Gt1KHpbQIw8J66wo07PMqamGjQK1uXfu1etbjENvs" "RM520NGLAAR01A06M4G_2023_01_20.zip" "Stock" }
-        "9" { Download-Firmware "https://mega.nz/file/7dVlmaRL#oGc7xp0BwjweSqACmxWHjlAZwVuBNtNa-v1z6ob43oQ" "RM520NGLAAR01A06M4G_2022_12_26.zip" "Stock" }
-        "10" { Get-Firmware-RM520NGL-Menu }
+	"1" { Download-Firmware "https://mega.nz/file/PItyjRaT#Mx3wkRsYcrZNjuvRj8c_qR-1W1swu6iYbcHPp39LCnc" "RM520NGLAAR01A08M4G_2025_01_08.zip" "Stock" }
+	"2" { Download-Firmware "https://mega.nz/file/PMNkCLzR#MoLgG9mROATtL5LpYgFiroAudZMOOWCOAumYlPi1NFA" "RM520NGLAAR01A08M4G_2024_10_09.zip" "Stock" }
+	"3" { Download-Firmware "https://mega.nz/file/eBVFhDhZ#1or8iMpmJiIKtZAPjo3rBTL2rit-pMFyZN10VSUzbgg" "RM520NGLAAR01A08M4G_2024_06_20.zip" "Stock" }
+    "4" { Download-Firmware "https://mega.nz/file/ucclVCLT#chq0HzixUTPoNpG9G2duv5Xhj2JChz2ALa6QJpZJ3kY" "RM520NGLAAR01A08M4G_2024_04_03.zip" "Stock" }
+    "5" { Download-Firmware "https://mega.nz/file/2NdzWKJJ#n4EbQkh17Pwfkfxzz-ZbjN5MFK6fJVRgLx6Chh43QRk" "RM520NGLAAR01A08M4G_2024_02_01.zip" "Stock" }
+    "6" { Download-Firmware "https://mega.nz/file/SYMh0YwI#xLaLs8qeOMOmic1wHLROrZedZ3USmNzGrSkFddOiAzk" "RM520NGLAAR01A08M4G_2023_07_20.zip" "Stock" }
+    "7" { Download-Firmware "https://mega.nz/file/zR011SQT#lPdFog6G_5RFdKCltnpGKrblvEFOiW-Ctumz72LNMns" "RM520NGLAAR01A07M4G_2023_07_12.zip" "Stock" }
+    "8" { Download-Firmware "https://mega.nz/file/bFdVlJAB#-vDBJ4ywc4aM68ECG2Sef2i-5VuCHk-is05Y5HRyUJM" "RM520NGLAAR01A07M4G_2023_03_27.zip" "Stock" }
+    "9" { Download-Firmware "https://mega.nz/file/TJ8m1QoB#V7Gt1KHpbQIw8J66wo07PMqamGjQK1uXfu1etbjENvs" "RM520NGLAAR01A06M4G_2023_01_20.zip" "Stock" }
+    "10" { Download-Firmware "https://mega.nz/file/7dVlmaRL#oGc7xp0BwjweSqACmxWHjlAZwVuBNtNa-v1z6ob43oQ" "RM520NGLAAR01A06M4G_2022_12_26.zip" "Stock" }
+    "11" { Get-Firmware-RM520NGL-Menu }
         Default { Stock-Firmware-RM520NGL-Menu }
     }
 }
@@ -619,23 +621,27 @@ Function Cert-Firmware-RM520NGL-Menu {
     Write-Host "These options will download and extract a firmware zip with an update folder for use with Qflash"
     Write-Host "The .zips will extract to C:\Quectel\firmware\RM520NGL\Cert\<name_of_zip_without_extension>\" -ForegroundColor Green
 	Write-Host "=============================================================" -ForegroundColor Green
-	Write-RandomColorText "1) RM520NGLAAR03A04M4G (2024-08-09)"
-    Write-RandomColorText "2) RM520NGLAAR03A03M4G (2024-03-28)"
-    Write-RandomColorText "3) RM520NGLAAR03A01M4G (2024-01-02)"
-    Write-RandomColorText "4) RM520NGLAAR03A02M4GA (2023-11-06)"
-    Write-RandomColorText "5) RM520NGLAAR03A03M4G (2023-07-25)"
-    Write-RandomColorText "6) RM520NGLAAR03A01M4G (2023-05-12)"
-    Write-RandomColorText "7) Go back to RM520NGL Firmware options"
+	Write-RandomColorText "1) RM520NGLAAR03A03M4G (2024-12-09)"
+	Write-RandomColorText "2) RM520NGLAAR03A04M4G (2024-10-22)"
+	Write-RandomColorText "3) RM520NGLAAR03A04M4G (2024-08-09)"
+    Write-RandomColorText "4) RM520NGLAAR03A03M4G (2024-03-28)"
+    Write-RandomColorText "5) RM520NGLAAR03A01M4G (2024-01-02)"
+    Write-RandomColorText "6) RM520NGLAAR03A02M4GA (2023-11-06)"
+    Write-RandomColorText "7) RM520NGLAAR03A03M4G (2023-07-25)"
+    Write-RandomColorText "8) RM520NGLAAR03A01M4G (2023-05-12)"
+    Write-RandomColorText "9) Go back to RM520NGL Firmware options"
 	Write-Host "=============================================================" -ForegroundColor Green
     $firmwareChoice = Read-Host "Select a Certified firmware"
     Switch ($firmwareChoice) {
-		"1" { Download-Firmware "https://mega.nz/file/GYEVXZbT#h4URXFp0VVl4IWklv24bbtKiZU-bWy96WjSeGVu-Li0" "RM520NGLAAR03A04M4G_2024_08_09.zip" "Cert" }
-        "2" { Download-Firmware "https://mega.nz/file/PcV0DDzA#aeQkP3V6WnzvO5BUPTw0Vm1Zdb5n9AA0Zb3ebSsHYlM" "RM520NGLAAR03A03M4G_2024_03_28.zip" "Cert" }
-        "3" { Download-Firmware "https://mega.nz/file/fdE1iY4T#4q_gz03GbQZ6mR3-SdQVptelwNPrklVSPWa1VcH9pVo" "RM520NGLAAR03A01M4G_2024_01_02.zip" "Cert" }
-        "4" { Download-Firmware "https://mega.nz/file/uZsCkCyL#XxVYTEuPJJOxz1WrSHmkdTbNMvziU9LIDTPIbTh2rkg" "RM520NGLAAR03A02M4GA_2023_11_06.zip" "Cert" }
-        "5" { Download-Firmware "https://mega.nz/file/TJFSiBqJ#DVPT-QX60A7pSFVXxxukMDSXTZswTl39XlTEH_NWWpM" "RM520NGLAAR03A03M4G_2023_07_25.zip" "Cert" }
-        "6" { Download-Firmware "https://mega.nz/file/yd8ATTCb#ZIbLL2GWnTG_j8RzMaHV4fN5P6v4zBKc1MLfGX5BXH0" "RM520NGLAAR03A01M4G_2023_05_12.zip" "Cert" }
-        "7" { Get-Firmware-RM520NGL-Menu }
+		"1" { Download-Firmware "https://mega.nz/file/nJszFDwY#s8KPB_4cpC-TUhAckZXNSnvpDMfOpHm6N0zir3U2jwg" "RM520NGLAAR03A03M4G_2024_12_09.zip" "Cert" }
+		"2" { Download-Firmware "https://mega.nz/file/LNERSCbK#Nf3X7c3rJ-ZaqwfBpfgk7giHPmiTgQVat86LtKFTdsw" "RM520NGLAAR03A04M4G_2024_10_22.zip" "Cert" }
+		"3" { Download-Firmware "https://mega.nz/file/GYEVXZbT#h4URXFp0VVl4IWklv24bbtKiZU-bWy96WjSeGVu-Li0" "RM520NGLAAR03A04M4G_2024_08_09.zip" "Cert" }
+        "4" { Download-Firmware "https://mega.nz/file/PcV0DDzA#aeQkP3V6WnzvO5BUPTw0Vm1Zdb5n9AA0Zb3ebSsHYlM" "RM520NGLAAR03A03M4G_2024_03_28.zip" "Cert" }
+        "5" { Download-Firmware "https://mega.nz/file/fdE1iY4T#4q_gz03GbQZ6mR3-SdQVptelwNPrklVSPWa1VcH9pVo" "RM520NGLAAR03A01M4G_2024_01_02.zip" "Cert" }
+        "6" { Download-Firmware "https://mega.nz/file/uZsCkCyL#XxVYTEuPJJOxz1WrSHmkdTbNMvziU9LIDTPIbTh2rkg" "RM520NGLAAR03A02M4GA_2023_11_06.zip" "Cert" }
+        "7" { Download-Firmware "https://mega.nz/file/TJFSiBqJ#DVPT-QX60A7pSFVXxxukMDSXTZswTl39XlTEH_NWWpM" "RM520NGLAAR03A03M4G_2023_07_25.zip" "Cert" }
+        "8" { Download-Firmware "https://mega.nz/file/yd8ATTCb#ZIbLL2GWnTG_j8RzMaHV4fN5P6v4zBKc1MLfGX5BXH0" "RM520NGLAAR03A01M4G_2023_05_12.zip" "Cert" }
+        "9" { Get-Firmware-RM520NGL-Menu }
         Default { Cert-Firmware-RM520NGL-Menu }
     }
 }
@@ -711,17 +717,19 @@ Function Stock-Firmware-RM551EGL-Menu {
     Write-Host "These options will download and extract a firmware zip with an update folder for use with Qflash"
     Write-Host "The .zips will extract to C:\Quectel\firmware\RM551EGL\Stock\<name_of_zip_without_extension>\"
 	Write-Host "=============================================================" -ForegroundColor Green
-	Write-RandomColorText "1) RM551EGL00AAR01A01M8G (2024-08-05)"
-    Write-RandomColorText "2) RM551EGL00AAR01A01M8G_BETA (2024-06-24)"
-    Write-RandomColorText "3) RM551EGL00AAR01A01M8G_BETA (2024-04-28)"
-    Write-Host "4) Go back to Main Menu"
+	Write-RandomColorText "1) RM551EGL00AAR01A02M8G (2024-12-23)"
+	Write-RandomColorText "2) RM551EGL00AAR01A01M8G (2024-08-05)"
+    Write-RandomColorText "3) RM551EGL00AAR01A01M8G_BETA (2024-06-24)"
+    Write-RandomColorText "4) RM551EGL00AAR01A01M8G_BETA (2024-04-28)"
+    Write-Host "5) Go back to Main Menu"
 	Write-Host "=============================================================" -ForegroundColor Green
     $firmwareChoice = Read-Host "Select a stock firmware"
     Switch ($firmwareChoice) {
-		"1" { Download-Firmware "https://mega.nz/file/aAdVHTST#dOzRfehUUbcUFH3Yoo-n58m68wgHcEXhcnKYuo2nMo4" "RM551EGL00AAR01A01M8G_2024_08_05.zip" "Stock" }
-        "2" { Download-Firmware "https://mega.nz/file/DQlFiSTA#DwvN0Sw3jSp75yxhb6drmZGB_IiQWhixXsZ8Da-qqeg" "RM551EGL00AAR01A01M8G_BETA_2024_06_24.zip" "Stock" }
-        "3" { Download-Firmware "https://mega.nz/file/jJUWhIgC#inwjWgTnrSU1_H8FRFR_Rm7X_AaqaO8uZVj2Q1Kp1s4" "RM551EGL00AAR01A01M8G_BETA_2024_04_28.zip" "Stock" }
-        "4" { Get-Firmware-Menu }
+		"1" { Download-Firmware "https://mega.nz/file/7IVVGDpa#W0nGKnVz0WW9tEQI3W3ndm-h39X40imQjPnSfh7FJCI" "RM551EGL00AAR01A02M8G_2024_12_23.zip" "Stock" }
+		"2" { Download-Firmware "https://mega.nz/file/aAdVHTST#dOzRfehUUbcUFH3Yoo-n58m68wgHcEXhcnKYuo2nMo4" "RM551EGL00AAR01A01M8G_2024_08_05.zip" "Stock" }
+        "3" { Download-Firmware "https://mega.nz/file/DQlFiSTA#DwvN0Sw3jSp75yxhb6drmZGB_IiQWhixXsZ8Da-qqeg" "RM551EGL00AAR01A01M8G_BETA_2024_06_24.zip" "Stock" }
+        "4" { Download-Firmware "https://mega.nz/file/jJUWhIgC#inwjWgTnrSU1_H8FRFR_Rm7X_AaqaO8uZVj2Q1Kp1s4" "RM551EGL00AAR01A01M8G_BETA_2024_04_28.zip" "Stock" }
+        "5" { Get-Firmware-Menu }
         Default { Stock-Firmware-RM551EGL-Menu }
     }
 }
