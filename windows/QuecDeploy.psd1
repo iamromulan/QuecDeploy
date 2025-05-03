@@ -6,10 +6,10 @@
         Host = 'IronmanPowerShellHost'
         PowerShellVersion = "Windows PowerShell"
         Obfuscate = $true
-        FileVersion = '1.0.4'
+        FileVersion = '1.0.5'
         FileDescription = 'Quickly deploy Quectel Tools/Firmware'
-        ProductName = 'QuecDeploy_x64_1.0.4'
-        ProductVersion = '1.0.4'
+        ProductName = 'QuecDeploy_x64_1.0.5'
+        ProductVersion = '1.0.5'
         Copyright = 'Cameron S Thompson'
         RequireElevation = $true
         ApplicationIconPath = 'D:\Users\camer\Documents\GitHub\QuecDeploy\windows\FenixStar.ico'
