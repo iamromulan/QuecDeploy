@@ -300,12 +300,17 @@ Function Install-Drivers-Menu {
 	Write-Host "=============================================================" -ForegroundColor Green
     $driverChoice = Read-Host "Select a driver option"
     Switch ($driverChoice) {
-        1 { Run-Exe -url "https://mega.nz/file/zJd1CYbL#OuzK4SaghBZuQ_RLstw--I38179sZM7TkkktL2IIsm4" -fileName "Quectel_Windows_USB_DriverQ_NDIS_V2.7_EN.zip" -setupExe "NDISsetup.exe" }
-        2 { Run-Exe -url "https://mega.nz/file/7IEjESSB#5jj1v7F3WWVfy6cFzdvfCHxaoTENMgBW2v_94NtgpoA" -fileName "Quectel_Windows_USB_DriverQ_ECM_V1.0_EN.zip" -setupExe "ECMsetup.exe" }
-        3 { Run-Exe -url "https://mega.nz/file/XRc0nZSQ#9hPjcrasgOQ9ej_tWQhvC6_NQC3iZMIdu0t17sz7AHE" -fileName "Quectel_Windows_USB_DriverQ_MBIM_V1.3_EN.zip" -setupExe "MBIMsetup.exe" }
-        4 { Run-Exe -url "https://mega.nz/file/vRN1ERaL#0zp9di4iFEaamkczsmw_Xaxr3fcWS7in9ODXZ73l8Lg" -fileName "Quectel_Windows_USB_DriverQ_RNDIS_V1.1_EN.zip" -setupExe "RNDISsetup.exe" }
+        1 { Run-Exe -url "https://mega.nz/file/zJd1CYbL#OuzK4SaghBZuQ_RLstw--I38179sZM7TkkktL2IIsm4" -fileName "Quectel_Windows_USB_DriverQ_NDIS_V2.7_EN.zip" -setupExe "NDISsetup.exe" 
+		Install-Drivers-Menu }
+        2 { Run-Exe -url "https://mega.nz/file/7IEjESSB#5jj1v7F3WWVfy6cFzdvfCHxaoTENMgBW2v_94NtgpoA" -fileName "Quectel_Windows_USB_DriverQ_ECM_V1.0_EN.zip" -setupExe "ECMsetup.exe" 
+		Install-Drivers-Menu }
+        3 { Run-Exe -url "https://mega.nz/file/XRc0nZSQ#9hPjcrasgOQ9ej_tWQhvC6_NQC3iZMIdu0t17sz7AHE" -fileName "Quectel_Windows_USB_DriverQ_MBIM_V1.3_EN.zip" -setupExe "MBIMsetup.exe" 
+		Install-Drivers-Menu }
+        4 { Run-Exe -url "https://mega.nz/file/vRN1ERaL#0zp9di4iFEaamkczsmw_Xaxr3fcWS7in9ODXZ73l8Lg" -fileName "Quectel_Windows_USB_DriverQ_RNDIS_V1.1_EN.zip" -setupExe "RNDISsetup.exe" 
+		Install-Drivers-Menu }
         5 { Main-Menu }
-        Default { Install-Drivers-Menu }
+        Default { Install-Drivers-Menu 
+		Install-Drivers-Menu }
     }
 }
 
@@ -331,7 +336,6 @@ Function Run-Exe {
         Write-Log "ERROR: Failed to extract or install $fileName"
     }
     Remove-Item -Path (Join-Path -Path $outputDir -ChildPath $setupExe) -Force
-    Install-Drivers-Menu
 }
 
 Function Install-Qflash-Menu {
@@ -1006,10 +1010,14 @@ Function Web-Links-Menu {
 	Write-Host "=============================================================" -ForegroundColor Green
     $docChoice = Read-Host "Select a modem model"
     Switch ($docChoice) {
-        1 { Open-WebPage "https://github.com/iamromulan/cellular-modem-wiki" }
-        2 { Open-WebPage "https://mega.nz/folder/CRFWlIpQ#grOByBgkfZe5uLMkX2M2XA" }
-        3 { Open-WebPage "https://github.com/iamromulan/QuecDeploy/releases" }
-        4 { Open-WebPage "https://github.com/iamromulan/quectel-rgmii-toolkit" }
+        1 { Open-WebPage "https://github.com/iamromulan/cellular-modem-wiki" 
+		Web-Links-Menu }
+        2 { Open-WebPage "https://mega.nz/folder/CRFWlIpQ#grOByBgkfZe5uLMkX2M2XA" 
+		Web-Links-Menu }
+        3 { Open-WebPage "https://github.com/iamromulan/QuecDeploy/releases" 
+		Web-Links-Menu }
+        4 { Open-WebPage "https://github.com/iamromulan/quectel-rgmii-toolkit" 
+		Web-Links-Menu }
         5 { Main-Menu }
         Default { Web-Links-Menu }
     }
@@ -1034,32 +1042,35 @@ Function Qualcomm-Tools-Menu {
     Switch ($driverChoice) {
         1 { 
             Run-Exe -url "https://mega.nz/file/qUthRSZT#YY36msFciDD6aZhyGIcoWaRnDln2qAUvCMBq-KvHG4E" -fileName "QPST_2.7.496_installer.zip" -setupExe "QPST.2.7.496.1.exe" 
-            
-            # Create desktop shortcuts for QPST Configuration and QFIL
-            $qpstPath = "C:\Program Files (x86)\Qualcomm\QPST\bin"
-            if (Test-Path -Path $qpstPath) {
-                Write-Log "Creating desktop shortcuts for QPST Configuration and QFIL..."
-                
-                # Create QPST Configuration shortcut
-                $desktopPath = [System.Environment]::GetFolderPath('CommonDesktopDirectory')
-                $qpstConfigShortcut = [System.IO.Path]::Combine($desktopPath, "QPST Configuration.lnk")
-                $ws = New-Object -ComObject WScript.Shell
-                $s = $ws.CreateShortcut($qpstConfigShortcut)
-                $s.TargetPath = "$qpstPath\QPSTConfig.exe"
-                $s.WorkingDirectory = $qpstPath
-                $s.Save()
-                
-                # Create QFIL shortcut
-                $qfilShortcut = [System.IO.Path]::Combine($desktopPath, "QFIL.lnk")
-                $s = $ws.CreateShortcut($qfilShortcut)
-                $s.TargetPath = "$qpstPath\QFIL.exe"
-                $s.WorkingDirectory = $qpstPath
-                $s.Save()
-                
-                Write-Log "Desktop shortcuts created successfully."
-            } else {
-                Write-Log "ERROR: QPST installation path not found. Shortcuts not created."
-            }
+
+
+				# Create shortcuts
+				$desktopShortcut = [System.IO.Path]::Combine([System.Environment]::GetFolderPath('CommonDesktopDirectory'), "QPST Configuration.lnk")
+				$s.WorkingDirectory = "C:\Program Files (x86)\Qualcomm\QPST\bin"
+				$ws = New-Object -ComObject WScript.Shell
+				$s = $ws.CreateShortcut($desktopShortcut)
+				$s.TargetPath = "C:\Program Files (x86)\Qualcomm\QPST\bin\QPSTConfig.exe"
+				$s.Save()
+				$desktopShortcut = [System.IO.Path]::Combine([System.Environment]::GetFolderPath('CommonDesktopDirectory'), "QFIL.lnk")
+				$ws = New-Object -ComObject WScript.Shell
+				$s = $ws.CreateShortcut($desktopShortcut)
+				$s.TargetPath = "C:\Program Files (x86)\Qualcomm\QPST\bin\QFIL.exe"
+				$s.Save()
+	
+# Refresh the desktop
+Add-Type -TypeDefinition @"
+using System;
+using System.Runtime.InteropServices;
+
+public class Desktop
+{
+    [DllImport("shell32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    public static extern void SHChangeNotify(int eventId, int flags, IntPtr item1, IntPtr item2);
+}
+"@
+[Desktop]::SHChangeNotify(0x8000000, 0x1000, [IntPtr]::Zero, [IntPtr]::Zero)
+Write-Log "Desktop refreshed using SHChangeNotify."
+Qualcomm-Tools-Menu
         }
         2 { Main-Menu }
         Default { Qualcomm-Tools-Menu }
