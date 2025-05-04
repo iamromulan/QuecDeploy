@@ -397,6 +397,19 @@ Function Install-QflashVersion {
         [System.Environment]::SetEnvironmentVariable("Path", $env:Path + ";$platformToolsPath", [System.EnvironmentVariableTarget]::Machine)
     }
 
+	# Remove old shortcuts
+	$desktopPath = [System.Environment]::GetFolderPath('CommonDesktopDirectory')
+	Get-ChildItem -Path $desktopPath -Filter "QFlash*.lnk" | ForEach-Object {
+		Write-Log "Removing shortcut: $($_.FullName)"
+		Remove-Item -Path $_.FullName -Force
+	}
+
+	$startMenuPath = [System.IO.Path]::Combine($env:PROGRAMDATA, 'Microsoft\Windows\Start Menu\Programs')
+	Get-ChildItem -Path $startMenuPath -Filter "QFlash*.lnk" | ForEach-Object {
+		Write-Log "Removing shortcut: $($_.FullName)"
+		Remove-Item -Path $_.FullName -Force
+	}
+
     # Create shortcuts
     $desktopShortcut = [System.IO.Path]::Combine([System.Environment]::GetFolderPath('CommonDesktopDirectory'), "QFlash 7.4.lnk")
     $startMenuShortcut = [System.IO.Path]::Combine($env:PROGRAMDATA, 'Microsoft\Windows\Start Menu\Programs', "QFlash 7.4.lnk")
@@ -467,6 +480,19 @@ Function Install-QnavigatorVersion {
     Extract-Zip -zipPath (Join-Path -Path $installDir -ChildPath $zipName) -extractPath $installDir
     Remove-Item -Path (Join-Path -Path $installDir -ChildPath $zipName) -Force
     Write-Log "Qnavigator installed to $installDir"
+
+	# Remove old shortcuts
+	$desktopPath = [System.Environment]::GetFolderPath('CommonDesktopDirectory')
+	Get-ChildItem -Path $desktopPath -Filter "Qnavigator*.lnk" | ForEach-Object {
+		Write-Log "Removing shortcut: $($_.FullName)"
+		Remove-Item -Path $_.FullName -Force
+	}
+
+	$startMenuPath = [System.IO.Path]::Combine($env:PROGRAMDATA, 'Microsoft\Windows\Start Menu\Programs')
+	Get-ChildItem -Path $startMenuPath -Filter "Qnavigator*.lnk" | ForEach-Object {
+		Write-Log "Removing shortcut: $($_.FullName)"
+		Remove-Item -Path $_.FullName -Force
+	}
 
     # Create shortcuts
     $desktopShortcut = [System.IO.Path]::Combine([System.Environment]::GetFolderPath('CommonDesktopDirectory'), "Qnavigator.lnk")
@@ -972,14 +998,42 @@ Function Open-WebPage {
 Function Qualcomm-Tools-Menu {
     Write-Log "Displaying Qualcomm Tools Menu."
     cls
-	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "=============================================================" -ForegroundColor Green
     Write-RandomColorText "1) Install QPST 2.7.496 and QFIL 2.0.3.5"
     Write-RandomColorText "2) Main Menu"
-	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "=============================================================" -ForegroundColor Green
     $driverChoice = Read-Host "Select an option"
     Switch ($driverChoice) {
-        1 { Run-Exe -url "https://mega.nz/file/qUthRSZT#YY36msFciDD6aZhyGIcoWaRnDln2qAUvCMBq-KvHG4E" -fileName "QPST_2.7.496_installer.zip" -setupExe "QPST.2.7.496.1.exe" }
-        5 { Main-Menu }
+        1 { 
+            Run-Exe -url "https://mega.nz/file/qUthRSZT#YY36msFciDD6aZhyGIcoWaRnDln2qAUvCMBq-KvHG4E" -fileName "QPST_2.7.496_installer.zip" -setupExe "QPST.2.7.496.1.exe" 
+            
+            # Create desktop shortcuts for QPST Configuration and QFIL
+            $qpstPath = "C:\Program Files (x86)\Qualcomm\QPST\bin"
+            if (Test-Path -Path $qpstPath) {
+                Write-Log "Creating desktop shortcuts for QPST Configuration and QFIL..."
+                
+                # Create QPST Configuration shortcut
+                $desktopPath = [System.Environment]::GetFolderPath('CommonDesktopDirectory')
+                $qpstConfigShortcut = [System.IO.Path]::Combine($desktopPath, "QPST Configuration.lnk")
+                $ws = New-Object -ComObject WScript.Shell
+                $s = $ws.CreateShortcut($qpstConfigShortcut)
+                $s.TargetPath = "$qpstPath\QPSTConfig.exe"
+                $s.WorkingDirectory = $qpstPath
+                $s.Save()
+                
+                # Create QFIL shortcut
+                $qfilShortcut = [System.IO.Path]::Combine($desktopPath, "QFIL.lnk")
+                $s = $ws.CreateShortcut($qfilShortcut)
+                $s.TargetPath = "$qpstPath\QFIL.exe"
+                $s.WorkingDirectory = $qpstPath
+                $s.Save()
+                
+                Write-Log "Desktop shortcuts created successfully."
+            } else {
+                Write-Log "ERROR: QPST installation path not found. Shortcuts not created."
+            }
+        }
+        2 { Main-Menu }
         Default { Qualcomm-Tools-Menu }
     }
 }
