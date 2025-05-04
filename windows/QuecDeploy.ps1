@@ -221,12 +221,12 @@ Write-Host "                                  .@@@@@@.                  "
 Write-Host "                                    :@@@@@*.                "
 Write-Host "                                      .=@@@@@-              "
 Write-Host "                                           :+##+.           "
-    Write-Host "Welcome to iamromulan's Quectel Software Deployment Tool" -ForegroundColor Green
+    Write-Host "Welcome to iamromulan's Quectel Software Deployment Tool v1.0.5" -ForegroundColor Green
     Write-Host "Visit https://github.com/iamromulan/ for more" -ForegroundColor Green
 	sleep 3
 	cls
 	Write-Host "=============================================================" -ForegroundColor Green
-	Write-Host "Main Menu"
+	Write-Host "QuecDeploy 1.0.5 - Main Menu"
 	Write-Host "=============================================================" -ForegroundColor Green
     Write-Host "Visit https://github.com/iamromulan/ for more" -ForegroundColor Green
     Write-Host "Please select an option:"
@@ -256,7 +256,7 @@ Function Main-Menu {
     Write-Log "Displaying Main Menu."
 	cls
 	Write-Host "=============================================================" -ForegroundColor Green
-	Write-Host "Main Menu"
+	Write-Host "QuecDeploy 1.0.5 - Main Menu"
 	Write-Host "=============================================================" -ForegroundColor Green
     Write-Host "Visit https://github.com/iamromulan/ for more" -ForegroundColor Green
     Write-Host "Please select an option:"
