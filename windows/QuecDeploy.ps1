@@ -543,16 +543,18 @@ Function Get-Firmware-Menu {
     Write-RandomColorText "1) RM520N-GL"
     Write-RandomColorText "2) RM521F-GL"
     Write-RandomColorText "3) RM502Q-AE"
-    Write-RandomColorText "4) RM551E-GL"
-    Write-RandomColorText "5) Go back to Main Menu"
+	Write-RandomColorText "4) RM550V-GL"
+    Write-RandomColorText "5) RM551E-GL"
+    Write-RandomColorText "6) Go back to Main Menu"
 	Write-Host "=============================================================" -ForegroundColor Green
     $firmwareChoice = Read-Host "Select firmware type"
     Switch ($firmwareChoice) {
         1 { $global:model = "RM520NGL"; Get-Firmware-RM520NGL-Menu }
         2 { $global:model = "RM521FGL"; Stock-Firmware-RM521FGL-Menu }
         3 { $global:model = "RM502QAE"; Stock-Firmware-RM502QAE-Menu }
-        4 { $global:model = "RM551EGL"; Stock-Firmware-RM551EGL-Menu }
-        5 { Main-Menu }
+		4 { $global:model = "RM550VGL"; Get-Firmware-RM550VGL-Menu }
+        5 { $global:model = "RM551EGL"; Get-Firmware-RM551EGL-Menu }
+        6 { Main-Menu }
         Default { Get-Firmware-Menu }
     }
 }
@@ -712,6 +714,177 @@ Function Stock-Firmware-RM502QAE-Menu {
     }
 }
 
+Function Get-Firmware-RM550VGL-Menu {
+    Write-Log "Displaying Firmware for RM550V-GL Menu."
+    cls
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "Choose variant:"
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-RandomColorText "1) AA"
+    Write-RandomColorText "2) AB"
+    Write-RandomColorText "3) Go back to Firmware Menu"
+	Write-Host "=============================================================" -ForegroundColor Green
+    $firmwareChoice = Read-Host "Select firmware type"
+    Switch ($firmwareChoice) {
+        1 { AA-Firmware-RM550VGL-Menu }
+        2 { AB-Firmware-RM550VGL-Menu }
+        3 { Get-Firmware-Menu }
+        Default { Get-Firmware-RM550VGL-Menu }
+    }
+}
+
+Function AA-Firmware-RM550VGL-Menu {
+    Write-Log "Displaying Firmware for RM550V-GLAA Menu."
+    cls
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "RM550V-GLAA Firmware Options:"
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-RandomColorText "1) Stock Firmware"
+    Write-RandomColorText "2) Custom Firmware"
+    Write-RandomColorText "3) Go back to RM550V-GL Firmware Menu"
+	Write-Host "=============================================================" -ForegroundColor Green
+    $firmwareChoice = Read-Host "Select firmware type"
+    Switch ($firmwareChoice) {
+        1 { Stock-Firmware-RM550VGLAA-Menu }
+        2 { Custom-Firmware-RM550VGLAA-Menu }
+        3 { Get-Firmware-RM550VGL-Menu }
+        Default { AA-Firmware-RM550VGL-Menu }
+    }
+}
+
+Function Stock-Firmware-RM550VGLAA-Menu {
+    Write-Log "Displaying Stock Firmware for RM551E-GL Menu."
+    cls
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "Stock RM550V-GLAA Firmware:"
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "These options will download and extract a firmware zip with an update folder for use with Qflash"
+    Write-Host "The .zips will extract to C:\Quectel\firmware\RM550VGL\Stock\<name_of_zip_without_extension>\"
+	Write-Host "=============================================================" -ForegroundColor Green
+	Write-RandomColorText "1) RM550VGL01AAR01A02M8G (2024-06-06) (Eth does not work)"
+    Write-Host "2) Go back to Main Firmware Menu"
+	Write-Host "=============================================================" -ForegroundColor Green
+    $firmwareChoice = Read-Host "Select a stock firmware"
+    Switch ($firmwareChoice) {
+		"1" { Download-Firmware "https://mega.nz/file/XQFSiLJB#qq4ImzXWOMGrTj7s0l7F-Qh0EgEQdq7tQuzmEpMP8jo" "RM550VGL01AAR01A02M8G_2024_06_06.zip" "Stock" }
+        "2" { Get-Firmware-Menu }
+        Default { Stock-Firmware-RM550VGLAA-Menu }
+    }
+}
+
+Function Custom-Firmware-RM550VGLAA-Menu {
+    Write-Log "Displaying Custom Firmware for RM550V-GL Menu."
+    cls
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "Custom RM550V-GLAA Firmware:"
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "These options will download and extract a firmware zip with an update folder for use with Qflash"
+    Write-Host "The .zips will extract to C:\Quectel\firmware\RM550VGL\Custom\<name_of_zip_without_extension>\"
+	Write-Host "=============================================================" -ForegroundColor Green
+	Write-RandomColorText "1) RM550VGL01AAR01A01M8G_iamromulan_mix-mod (2025-04-21)"
+	Write-Host "=============================================================" -ForegroundColor Green
+	Write-Host "In an effort to bring firmware improvements and functions over from the RM551 firmware I mixed 550 firmware with 551 firmware."
+	Write-Host "The majority of this firmware is RM551EGL00AAR01A01M8G (2024-08-05)"
+	Write-Host "However, NON-HLOS.ubi is from RM550VGL01AAR01A02M8G (2024-06-06)"
+	Write-Host "./update/firehose/rawprogram_nand_p4K_b256K_update.xml has been updated for flashing RM550VGL01AA_VA"
+	Write-Host "AT+QCFG="pcie/mode",1 works; so Ethernet works"
+	Write-Host "For those that are not using an ethernet sled you may or may not have a better time with this . I am not sure. Probably better."
+	Write-Host "=============================================================" -ForegroundColor Green    
+	Write-RandomColorText "2) Go back to Main Firmware Menu"
+	Write-Host "=============================================================" -ForegroundColor Green
+    $firmwareChoice = Read-Host "Select a stock firmware"
+    Switch ($firmwareChoice) {
+		"1" { Download-Firmware "https://mega.nz/file/yUdDEQBI#YpDN0CAhwPkQmDTOEImY5hmcYSmQlgsk15mEc-EqdsQ" "RM550VGL01AAR01A01M8G_iamromulan_mix-mod_2025_04_12.zip" "Custom" }
+        "2" { Get-Firmware-Menu }
+        Default { Custom-Firmware-RM550VGLAA-Menu }
+    }
+}
+
+Function AB-Firmware-RM550VGL-Menu {
+    Write-Log "Displaying Firmware for RM551E-GLAB Menu."
+    cls
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "RM550V-GLAB Firmware Options:"
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-RandomColorText "1) Stock Firmware"
+    Write-RandomColorText "2) Custom Firmware"
+    Write-RandomColorText "3) Go back to RM550V-GL Firmware Menu"
+	Write-Host "=============================================================" -ForegroundColor Green
+    $firmwareChoice = Read-Host "Select firmware type"
+    Switch ($firmwareChoice) {
+        1 { Stock-Firmware-RM550VGLAB-Menu }
+        2 { Custom-Firmware-RM550VGLAB-Menu }
+        3 { Get-Firmware-RM550VGL-Menu }
+        Default { AB-Firmware-RM550VGL-Menu }
+    }
+}
+
+Function Stock-Firmware-RM550VGLAB-Menu {
+    Write-Log "Displaying Stock Firmware for RM551E-GLAB Menu."
+    cls
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "Stock RM550V-GLAB Firmware:"
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "These options will download and extract a firmware zip with an update folder for use with Qflash"
+    Write-Host "The .zips will extract to C:\Quectel\firmware\RM550VGL\Stock\<name_of_zip_without_extension>\"
+	Write-Host "=============================================================" -ForegroundColor Green
+	Write-RandomColorText "1) RM550VGL01ABR01A02M4G (2024-11-28)(Eth does not work)"
+    Write-Host "2) Go back to Main Firmware Menu"
+	Write-Host "=============================================================" -ForegroundColor Green
+    $firmwareChoice = Read-Host "Select a stock firmware"
+    Switch ($firmwareChoice) {
+		"1" { Download-Firmware "https://mega.nz/file/TVdRVYiK#4uYulUXAtYPtIKzrXopy97SY-vH0ynzkYVmnxxLUSF4" "RM550VGL01ABR01A02M4G_2024_11_28.zip" "Stock" }
+        "2" { Get-Firmware-Menu }
+        Default { Stock-Firmware-RM550VGLAA-Menu }
+    }
+}
+
+Function Custom-Firmware-RM550VGLAB-Menu {
+    Write-Log "Displaying Custom Firmware for RM550V-GLAB Menu."
+    cls
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "Custom RM550V-GLAB Firmware:"
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "These options will download and extract a firmware zip with an update folder for use with Qflash"
+    Write-Host "The .zips will extract to C:\Quectel\firmware\RM550VGL\Custom\<name_of_zip_without_extension>\"
+	Write-Host "=============================================================" -ForegroundColor Green
+	Write-RandomColorText "1) RM550VGL00ABR01A02M8G_iamromulan_mix-mod (2025_04_12)"
+	Write-Host "=============================================================" -ForegroundColor Green
+	Write-Host "In an effort to bring firmware improvements and functions over from the RM551 firmware I mixed 550 firmware with 551 firmware."
+	Write-Host "The majority of this firmware is RM551EGL00AAR01A02M8G (2024-12-23)"
+	Write-Host "However, NON-HLOS.ubi is from RM550VGL01ABR01A02M4G (2024-11-28)"
+	Write-Host "./update/firehose/rawprogram_nand_p4K_b256K_update.xml has been updated for flashing RM550VGL01AB_VB"
+	Write-Host "This is untested. I do not have an AB to test with. Flash at your own risk." -ForegroundColor Red
+	Write-Host "=============================================================" -ForegroundColor Green    
+	Write-RandomColorText "2) Go back to Main Firmware Menu"
+	Write-Host "=============================================================" -ForegroundColor Green
+    $firmwareChoice = Read-Host "Select a stock firmware"
+    Switch ($firmwareChoice) {
+		"1" { Download-Firmware "https://mega.nz/file/zQVREI7b#Vo6zTpn8JJbFf39llEJ3dAO9Bw-f03arLVj1eKORCqE" "RM550VGL00ABR01A02M8G_iamromulan_mix-mod_2025_04_12.zip" "Custom" }
+        "2" { Get-Firmware-Menu }
+        Default { Custom-Firmware-RM550VGLAB-Menu }
+    }
+}
+
+Function Get-Firmware-RM551EGL-Menu {
+    Write-Log "Displaying Firmware for RM551E-GL Menu."
+    cls
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "RM551E-GL Firmware Options:"
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-RandomColorText "1) Stock Firmware"
+    Write-RandomColorText "2) Custom Firmware"
+    Write-RandomColorText "3) Go back to Firmware Menu"
+	Write-Host "=============================================================" -ForegroundColor Green
+    $firmwareChoice = Read-Host "Select firmware type"
+    Switch ($firmwareChoice) {
+        1 { Stock-Firmware-RM551EGL-Menu }
+        2 { Custom-Firmware-RM551EGL-Menu }
+        3 { Get-Firmware-Menu }
+        Default { Get-Firmware-RM551EGL-Menu }
+    }
+}
+
 Function Stock-Firmware-RM551EGL-Menu {
     Write-Log "Displaying Stock Firmware for RM551E-GL Menu."
     cls
@@ -735,6 +908,33 @@ Function Stock-Firmware-RM551EGL-Menu {
         "4" { Download-Firmware "https://mega.nz/file/jJUWhIgC#inwjWgTnrSU1_H8FRFR_Rm7X_AaqaO8uZVj2Q1Kp1s4" "RM551EGL00AAR01A01M8G_BETA_2024_04_28.zip" "Stock" }
         "5" { Get-Firmware-Menu }
         Default { Stock-Firmware-RM551EGL-Menu }
+    }
+}
+
+Function Custom-Firmware-RM551EGL-Menu {
+    Write-Log "Displaying Custom Firmware for RM551E-GL Menu."
+    cls
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "Custom RM551E-GL Firmware:"
+	Write-Host "=============================================================" -ForegroundColor Green
+    Write-Host "These options will download and extract a firmware zip with an update folder for use with Qflash"
+    Write-Host "The .zips will extract to C:\Quectel\firmware\RM551EGL\Custom\<name_of_zip_without_extension>\"
+	Write-Host "=============================================================" -ForegroundColor Green
+	Write-RandomColorText "1) RM551EGL00AAR01A02M8G_2025_4_21_iamromulan_basic_eth (2025-04-21)"
+	Write-Host "=============================================================" -ForegroundColor Green
+	Write-Host "Flash this if you plan to use the RM551E-GL in an ethernet sled. Once the flash completes wait for the ports to come back up in device manager."
+	Write-Host "Once they come back, wait about 30 seconds +/- for the second reboot to occur. AT+QCFG="pcie/mode",1 and AT+QCFG="usbnet",1 are sent then it reboots"
+	Write-Host "Once the second reboot occurs ethernet will be working with Luci and SSH acess at 192.168.224.1"
+	Write-Host "Pre-set root password is iamromulan"
+	Write-Host "Based on Stock firmware: RM551EGL00AAR01A02M8G (2024-12-23)"
+	Write-Host "=============================================================" -ForegroundColor Green    
+	Write-RandomColorText "2) Go back to Main Firmware Menu"
+	Write-Host "=============================================================" -ForegroundColor Green
+    $firmwareChoice = Read-Host "Select a stock firmware"
+    Switch ($firmwareChoice) {
+		"1" { Download-Firmware "https://mega.nz/file/GUkk0RpD#7JsFymzKBBKplxLs5tqc5-m7rBmrB2QPfTfMtf1ZQ4g" "RM551EGL00AAR01A02M8G_2025_4_21_iamromulan_basic_eth.zip" "Custom" }
+        "2" { Get-Firmware-Menu }
+        Default { Custom-Firmware-RM551EGL-Menu }
     }
 }
 
@@ -772,10 +972,11 @@ Function Open-WebPage {
 Function Qualcomm-Tools-Menu {
     Write-Log "Displaying Qualcomm Tools Menu."
     cls
+	Write-Host "=============================================================" -ForegroundColor Green
     Write-RandomColorText "1) Install QPST 2.7.496 and QFIL 2.0.3.5"
     Write-RandomColorText "2) Main Menu"
 	Write-Host "=============================================================" -ForegroundColor Green
-    $driverChoice = Read-Host "Select a driver option"
+    $driverChoice = Read-Host "Select an option"
     Switch ($driverChoice) {
         1 { Run-Exe -url "https://mega.nz/file/qUthRSZT#YY36msFciDD6aZhyGIcoWaRnDln2qAUvCMBq-KvHG4E" -fileName "QPST_2.7.496_installer.zip" -setupExe "QPST.2.7.496.1.exe" }
         5 { Main-Menu }
