@@ -423,8 +423,22 @@ Function Install-QflashVersion {
     $s.TargetPath = "$installDir\QFlash_V7.4.exe"
     $s.WorkingDirectory = $installDir
     $s.Save()
+	
+# Refresh the desktop
+Add-Type -TypeDefinition @"
+using System;
+using System.Runtime.InteropServices;
 
-    Main-Menu
+public class Desktop
+{
+    [DllImport("shell32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    public static extern void SHChangeNotify(int eventId, int flags, IntPtr item1, IntPtr item2);
+}
+"@
+[Desktop]::SHChangeNotify(0x8000000, 0x1000, [IntPtr]::Zero, [IntPtr]::Zero)
+Write-Log "Desktop refreshed using SHChangeNotify."
+    
+	Main-Menu
 }
 
 Function Install-Qnavigator-Menu {
@@ -507,7 +521,21 @@ Function Install-QnavigatorVersion {
     $s.TargetPath = "$installDir\Qnavigator.exe"
     $s.WorkingDirectory = $installDir
     $s.Save()
+	
+# Refresh the desktop
+Add-Type -TypeDefinition @"
+using System;
+using System.Runtime.InteropServices;
 
+public class Desktop
+{
+    [DllImport("shell32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    public static extern void SHChangeNotify(int eventId, int flags, IntPtr item1, IntPtr item2);
+}
+"@
+[Desktop]::SHChangeNotify(0x8000000, 0x1000, [IntPtr]::Zero, [IntPtr]::Zero)
+Write-Log "Desktop refreshed using SHChangeNotify."
+    
     Main-Menu
 }
 
