@@ -232,7 +232,7 @@ Write-Host "                                           :+##+.           "
     Write-Host "Please select an option:"
 	Write-Host "=============================================================" -ForegroundColor Green
     Write-RandomColorText "1) Install/Uninstall Drivers"
-    Write-RandomColorText "2) Install/Uninstall Qflash 7.4 + adb/fastboot"
+    Write-RandomColorText "2) Install/Uninstall Qflash 7.5 + adb/fastboot"
     Write-RandomColorText "3) Install/Uninstall Qnavigator 1.6.10"
     Write-RandomColorText "4) Firmware downloads"
     Write-RandomColorText "5) Useful Web links"
@@ -262,7 +262,7 @@ Function Main-Menu {
     Write-Host "Please select an option:"
 	Write-Host "=============================================================" -ForegroundColor Green
     Write-RandomColorText "1) Install/Uninstall Drivers"
-    Write-RandomColorText "2) Install/Uninstall Qflash 7.4 + adb/fastboot"
+    Write-RandomColorText "2) Install/Uninstall Qflash 7.5 + adb/fastboot"
     Write-RandomColorText "3) Install/Uninstall Qnavigator 1.6.10"
     Write-RandomColorText "4) Firmware downloads"
     Write-RandomColorText "5) Useful Web links"
@@ -292,7 +292,7 @@ Function Install-Drivers-Menu {
 	Write-Host "=============================================================" -ForegroundColor Green
     Write-Host "Driver Options:"
 	Write-Host "=============================================================" -ForegroundColor Green
-    Write-RandomColorText "1) Install NDIS Driver 2.7 (For usb mode: AT+QCFG='usbnet',0)"
+    Write-RandomColorText "1) Install NDIS Driver 2.8 (For usb mode: AT+QCFG='usbnet',0)"
     Write-RandomColorText "2) Install ECM Driver 1.0 (For usb mode: AT+QCFG='usbnet',1) Note: NDIS driver needed for ports"
     Write-RandomColorText "3) Install MBIM Driver 1.3 (For usb mode: AT+QCFG='usbnet',2)"
     Write-RandomColorText "4) Install RNDIS Driver 1.1 (For usb mode: AT+QCFG='usbnet',3)"
@@ -300,7 +300,7 @@ Function Install-Drivers-Menu {
 	Write-Host "=============================================================" -ForegroundColor Green
     $driverChoice = Read-Host "Select a driver option"
     Switch ($driverChoice) {
-        1 { Run-Exe -url "https://mega.nz/file/zJd1CYbL#OuzK4SaghBZuQ_RLstw--I38179sZM7TkkktL2IIsm4" -fileName "Quectel_Windows_USB_DriverQ_NDIS_V2.7_EN.zip" -setupExe "NDISsetup.exe" 
+        1 { Run-Exe -url "https://mega.nz/file/CNtRgajD#Ot5xzESCIlffVO4cpH3ENlz7UQ5x0fidbZp0ba_XDiQ" -fileName "Quectel_Windows_USB_DriverQ_NDIS_V2.8_EN.zip" -setupExe "setup.exe" 
 		Install-Drivers-Menu }
         2 { Run-Exe -url "https://mega.nz/file/7IEjESSB#5jj1v7F3WWVfy6cFzdvfCHxaoTENMgBW2v_94NtgpoA" -fileName "Quectel_Windows_USB_DriverQ_ECM_V1.0_EN.zip" -setupExe "ECMsetup.exe" 
 		Install-Drivers-Menu }
@@ -344,15 +344,15 @@ Function Install-Qflash-Menu {
 	Write-Host "=============================================================" -ForegroundColor Green
     Write-Host "Qflash Installation:"
 	Write-Host "=============================================================" -ForegroundColor Green
-    Write-RandomColorText "1) Install/Uninstall Qflash 7.4 + adb/fastboot"
+    Write-RandomColorText "1) Install/Uninstall Qflash 7.5 + adb/fastboot"
     Write-RandomColorText "2) Go back to Main Menu"
 	Write-Host "=============================================================" -ForegroundColor Green
     $qflashChoice = Read-Host "Select an option"
     Switch ($qflashChoice) {
         1 {
             $qflashDir = "C:\Quectel\Qflash\"
-            $qflashZipUrl = "https://mega.nz/file/XVUnUIgK#taXFqBqsFUS0wRT148WXwwFMrL5aHAdT01eRJSTBLSg"
-            $qflashZipName = "QFlash_V7.4.zip"
+            $qflashZipUrl = "https://mega.nz/file/SAMyBArR#UszH_L8rMMU-QusPfB1Key69AiXrQLNyhl4dfDAh-fs"
+            $qflashZipName = "QFlash_V7.5.zip"
             Install-QflashVersion -url $qflashZipUrl -zipName $qflashZipName -installDir $qflashDir
         }
         2 { Main-Menu }
@@ -387,7 +387,7 @@ Function Install-QflashVersion {
             }
         }
     }
-    Write-Log "Installing Qflash 7.4..."
+    Write-Log "Installing Qflash 7.5..."
     New-Item -Path $installDir -ItemType Directory -Force
     Download-With-Megatools -url $url -output $installDir
     Extract-Zip -zipPath (Join-Path -Path $installDir -ChildPath $zipName) -extractPath $installDir
@@ -415,16 +415,16 @@ Function Install-QflashVersion {
 	}
 
     # Create shortcuts
-    $desktopShortcut = [System.IO.Path]::Combine([System.Environment]::GetFolderPath('CommonDesktopDirectory'), "QFlash 7.4.lnk")
-    $startMenuShortcut = [System.IO.Path]::Combine($env:PROGRAMDATA, 'Microsoft\Windows\Start Menu\Programs', "QFlash 7.4.lnk")
+    $desktopShortcut = [System.IO.Path]::Combine([System.Environment]::GetFolderPath('CommonDesktopDirectory'), "QFlash 7.5.lnk")
+    $startMenuShortcut = [System.IO.Path]::Combine($env:PROGRAMDATA, 'Microsoft\Windows\Start Menu\Programs', "QFlash 7.5.lnk")
     $ws = New-Object -ComObject WScript.Shell
     $s = $ws.CreateShortcut($desktopShortcut)
-    $s.TargetPath = "$installDir\QFlash_V7.4.exe"
+    $s.TargetPath = "$installDir\QFlash_V7.5.exe"
     $s.WorkingDirectory = $installDir
     $s.Save()
 
     $s = $ws.CreateShortcut($startMenuShortcut)
-    $s.TargetPath = "$installDir\QFlash_V7.4.exe"
+    $s.TargetPath = "$installDir\QFlash_V7.5.exe"
     $s.WorkingDirectory = $installDir
     $s.Save()
 	
