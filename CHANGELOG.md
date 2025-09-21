@@ -1,3 +1,32 @@
+## Changelog V1.0.6 (September 20th 2025):
+![v1.0.6.png](https://raw.githubusercontent.com/iamromulan/QuecDeploy/refs/heads/main/images/v1.0.6.png)
+
+- Updated embedded base64 megatools exe to megatools-1.11.5.20250706
+  - Source: [https://xff.cz/megatools/builds/builds/megatools-1.11.5.20250706-win64.zip](https://xff.cz/megatools/builds/builds/megatools-1.11.5.20250706-win64.zip)
+- Replaced NDIS Driver 2.7 with NDIS Driver 2.8
+- Replaced Qflash 7.4 with Qflash 7.5 and included the latest platform-tools from [https://developer.android.com/tools/releases/platform-tools](https://developer.android.com/tools/releases/platform-tools)
+- Added QWinLog 1.8
+  - QWinLog allows the capture of an QXDM log via the DM port over USB.
+  - Select USB port ---> DM COM port then click start.
+  - An initial log is captured, then it continues to record module behavior to the log path until you click stop.
+  - Quectel support will usually ask you to capture a QXDM log and reproduce the issue. (Start recording and then stop after the issue happens)
+  - The AT command AT+QCFG="dbgctl",0 must be sent to the module to enable full QXDM capture before starting the capture
+- Renamed RM520N-GL firmware categories. Stock has always been R01 firmware and Cert has always been R03. I am still unsure of each of their purpose. R01 seems better than R03 to me.
+- Added 2 New RM520NGL R03 firmware:
+  - RM520NGLAAR03A03M4G_2025_06_12
+  - RM520NGLAAR03A03M4G_2025_04_28
+- Added 1 new stock and 2 custom R01 RM551E-GL firmware
+   - RM551EGL00AAR01A04M8G_2025_07_15 (Stock)
+   - RM551EGL00AAR01A04M8G_2025_8_2_iamromulan_basic_eth (Custom)
+   - RM551EGL00AAR01A04M8G_adb_2025_07_15 (Custom, closer to Stock though so kept same date)
+- Added 1 new Stock and Custom R02 RM551E-GL firmware
+  - RM551EGL00AAR02A01M8G_2025_08_13 (Stock)
+  - RM551EGL00AAR02A01M8G_2025_9_19_iamromulan_basic_eth (Custom)
+- Separated RM551E-GL firmware into R02 and R01, with Stock and Custom subcategories
+  - Flashing from/to/between R01 and R02 requires an XQCN backup using QPST, an erase all flash using QFIL, and finally an XQCN restore using QPST . I plan to make a YouTube video demonstrating this with the R02 Custom firmware.
+- Added a Web link to my YouTube Channel
+  - https://www.youtube.com/@iamromulan
+
 ## Changelog V1.0.5 (May 4th 2025):
 
 ![v1.0.5.png](https://raw.githubusercontent.com/iamromulan/QuecDeploy/refs/heads/main/images/v1.0.5.png)
