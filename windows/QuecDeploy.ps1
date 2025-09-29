@@ -221,12 +221,12 @@ Write-Host "                                  .@@@@@@.                  "
 Write-Host "                                    :@@@@@*.                "
 Write-Host "                                      .=@@@@@-              "
 Write-Host "                                           :+##+.           "
-    Write-Host "Welcome to iamromulan's Quectel Software Deployment Tool v1.0.6" -ForegroundColor Green
+    Write-Host "Welcome to iamromulan's Quectel Software Deployment Tool v1.0.7" -ForegroundColor Green
     Write-Host "Visit https://github.com/iamromulan/ for more" -ForegroundColor Green
 	sleep 3
 	cls
 	Write-Host "=============================================================" -ForegroundColor Green
-	Write-Host "QuecDeploy 1.0.6 - Main Menu"
+	Write-Host "QuecDeploy 1.0.7 - Main Menu"
 	Write-Host "=============================================================" -ForegroundColor Green
     Write-Host "Visit https://github.com/iamromulan/ for more" -ForegroundColor Green
     Write-Host "Please select an option:"
@@ -258,7 +258,7 @@ Function Main-Menu {
     Write-Log "Displaying Main Menu."
 	cls
 	Write-Host "=============================================================" -ForegroundColor Green
-	Write-Host "QuecDeploy 1.0.6 - Main Menu"
+	Write-Host "QuecDeploy 1.0.7 - Main Menu"
 	Write-Host "=============================================================" -ForegroundColor Green
     Write-Host "Visit https://github.com/iamromulan/ for more" -ForegroundColor Green
     Write-Host "Please select an option:"
@@ -1104,7 +1104,7 @@ Function R02-Custom-Firmware-RM551EGL-Menu {
     Write-Host "These options will download and extract a firmware zip with an update folder for use with Qflash"
     Write-Host "The .zips will extract to C:\Quectel\firmware\RM551EGL\R02\Custom\<name_of_zip_without_extension>\"
 	Write-Host "=============================================================" -ForegroundColor Green
-	Write-RandomColorText "1) RM551EGL00AAR02A01M8G_iamromulan_basic_eth.zip (2025-09-19)"
+	Write-RandomColorText "1) RM551EGL00AAR02A01M8G_iamromulan_basic_eth (2025-09-25)"
 	Write-Host "=============================================================" -ForegroundColor Green
 	Write-Host "Flash this if you plan to use the RM551E-GL in an ethernet sled. Once the flash completes wait for the ports to come back up in device manager."
 	Write-Host "Once they come back, wait about 30 seconds +/- for the second reboot to occur. AT+QCFG="pcie/mode",1 and AT+QCFG="usbnet",1 are sent then it reboots"
@@ -1116,7 +1116,7 @@ Function R02-Custom-Firmware-RM551EGL-Menu {
 	Write-Host "=============================================================" -ForegroundColor Green
     $firmwareChoice = Read-Host "Select a stock firmware"
     Switch ($firmwareChoice) {
-		"1" { Download-Firmware "https://mega.nz/file/bRlEmIyA#U_UTekrGr4rZJl45P1TIsdHurI8t9OJsM5SrQIG3rcQ" "RM551EGL00AAR02A01M8G_2025_9_19_iamromulan_basic_eth.zip" "R02\Custom" }
+		"1" { Download-Firmware "https://mega.nz/file/HQkQEQRL#RCtlWvZkIaNjfQurduRzswEEqe7pFmIBhKoGjcpa4Kc" "RM551EGL00AAR02A01M8G_2025_9_25_iamromulan_basic_eth.zip" "R02\Custom" }
         "2" { R02-Firmware-RM551EGL-Menu }
         Default { R02-Custom-Firmware-RM551EGL-Menu }
     }
