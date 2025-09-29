@@ -1,3 +1,9 @@
+## Changelog V1.0.7 (September 20th 2025):
+![v1.0.7.png](https://raw.githubusercontent.com/iamromulan/QuecDeploy/refs/heads/main/images/v1.0.7.png)
+
+- Replaced bad RM551EGL00AAR02A01M8G_2025_9_19_iamromulan_basic_eth (Custom) firmware with RM551EGL00AAR02A01M8G_2025_9_25_iamromulan_basic_eth (Custom)
+
+
 ## Changelog V1.0.6 (September 20th 2025):
 ![v1.0.6.png](https://raw.githubusercontent.com/iamromulan/QuecDeploy/refs/heads/main/images/v1.0.6.png)
 
