@@ -1,5 +1,5 @@
 # QuecDeploy: Quickly Install/Deploy Quectel Software/Firmware
-![v1.0.6.png](https://raw.githubusercontent.com/iamromulan/QuecDeploy/refs/heads/main/images/v1.0.6.png)
+![v1.0.7.png](https://raw.githubusercontent.com/iamromulan/QuecDeploy/refs/heads/main/images/v1.0.7.png)
 
 ## Download
 
